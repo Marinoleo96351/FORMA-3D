@@ -1,0 +1,91 @@
+### forma 3d — API de produtos
+### Testes manuais das rotas do dia 2. Sem autenticacao ainda (entra no dia 3).
+### Use o REST Client do VS Code ou o IntelliJ HTTP Client.
+
+@base = http://localhost:8080
+
+### Vitrine publica — so produtos ativos, ordenados por ordem e depois data
+GET {{base}}/api/produtos
+
+### Painel — todos os produtos, inclusive inativos
+GET {{base}}/api/admin/produtos
+
+### Criar produto
+# @name criar
+POST {{base}}/api/admin/produtos
+Content-Type: application/json
+
+{
+  "nome": "Vaso hexagonal",
+  "categoria": "Decoracao",
+  "preco": 59.90,
+  "observacao": "Impressao em PLA, 12 cm de altura",
+  "linkShopee": "https://shopee.com.br/forma3d/vaso-hexagonal",
+  "ordem": 1,
+  "ativo": true
+}
+
+### Guarda o id do produto recem-criado
+@id = {{criar.response.body.id}}
+
+### Buscar um produto pelo id
+GET {{base}}/api/admin/produtos/{{id}}
+
+### Atualizar produto
+PUT {{base}}/api/admin/produtos/{{id}}
+Content-Type: application/json
+
+{
+  "nome": "Vaso hexagonal grande",
+  "categoria": "Decoracao",
+  "preco": 74.90,
+  "observacao": "18 cm de altura",
+  "ordem": 1,
+  "ativo": true
+}
+
+### Alterar so a ordem
+PATCH {{base}}/api/admin/produtos/{{id}}/ordem
+Content-Type: application/json
+
+{
+  "ordem": 5
+}
+
+### Desativar (nao aparece mais na vitrine publica)
+PUT {{base}}/api/admin/produtos/{{id}}
+Content-Type: application/json
+
+{
+  "nome": "Vaso hexagonal grande",
+  "categoria": "Decoracao",
+  "preco": 74.90,
+  "ordem": 5,
+  "ativo": false
+}
+
+### Remover produto
+DELETE {{base}}/api/admin/produtos/{{id}}
+
+### Erro esperado: nome vazio -> 400 com { "mensagem": "..." }
+POST {{base}}/api/admin/produtos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "categoria": "Decoracao",
+  "preco": 10.00
+}
+
+### Erro esperado: preco zero -> 400
+POST {{base}}/api/admin/produtos
+Content-Type: application/json
+
+{
+  "nome": "Teste",
+  "categoria": "Decoracao",
+  "preco": 0
+}
+
+### Erro esperado: id inexistente -> 404
+GET {{base}}/api/admin/produtos/00000000-0000-0000-0000-000000000000
