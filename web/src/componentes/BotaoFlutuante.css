@@ -1,0 +1,21 @@
+.flutua {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 70;
+  background: var(--zap);
+  color: #04240F;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .5);
+}
+
+@media (min-width: 860px) {
+  .flutua {
+    display: none;
+  }
+}

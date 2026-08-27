@@ -1,0 +1,105 @@
+.card {
+  background: var(--carvao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s, transform .2s;
+}
+
+.card:hover {
+  border-color: rgba(76, 141, 255, .5);
+  transform: translateY(-3px);
+}
+
+.foto {
+  aspect-ratio: 1;
+  background: var(--elevado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cinza);
+  font-size: 12.5px;
+  position: relative;
+  border-bottom: 1px solid var(--linha);
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: rgba(5, 6, 9, .72);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--linha);
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--cinza);
+}
+
+.corpo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.corpo h3 {
+  font-size: 17px;
+}
+
+.preco {
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  color: var(--azul);
+}
+
+.obs {
+  font-size: 13px;
+  color: var(--cinza);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.card-acoes {
+  margin-top: auto;
+  display: grid;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 11px;
+  border-radius: 9px;
+  transition: filter .15s;
+}
+
+.mini:hover {
+  filter: brightness(1.12);
+}
+
+.mini-shopee {
+  background: var(--shopee);
+  color: #fff;
+}
+
+.mini-zap {
+  background: var(--zap);
+  color: #04240F;
+}

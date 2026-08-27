@@ -1,0 +1,26 @@
+.depos {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.depo {
+  background: var(--carvao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 24px;
+}
+
+.depo p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--branco);
+}
+
+.depo .quem {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  margin-top: 16px;
+}
