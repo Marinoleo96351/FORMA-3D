@@ -1,0 +1,106 @@
+.topo {
+  position: relative;
+  padding: 76px 0 64px;
+  overflow: hidden;
+}
+
+.piso {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 340px;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(76, 141, 255, .30) 0 1px, transparent 1px 74px),
+    repeating-linear-gradient(0deg, rgba(76, 141, 255, .22) 0 1px, transparent 1px 46px);
+  transform: perspective(220px) rotateX(74deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, transparent, #000 42%, transparent);
+  mask-image: linear-gradient(to top, transparent, #000 42%, transparent);
+  opacity: .55;
+}
+
+.risco {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(76, 141, 255, .55), transparent);
+  pointer-events: none;
+}
+
+.topo-grade {
+  display: grid;
+  gap: 38px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 940px) {
+  .topo-grade {
+    grid-template-columns: 1fr .88fr;
+    align-items: center;
+    gap: 60px;
+  }
+}
+
+.topo h1 {
+  font-size: clamp(42px, 7.6vw, 74px);
+  margin-top: 18px;
+}
+
+.topo h1 em {
+  font-style: italic;
+  color: var(--azul);
+}
+
+.topo .sub {
+  font-size: 17px;
+  color: var(--cinza);
+  max-width: 40ch;
+  margin-top: 20px;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 30px;
+}
+
+.moldura {
+  position: relative;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--carvao);
+  aspect-ratio: 4 / 3.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cinza);
+  font-size: 13.5px;
+  text-align: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.moldura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.selo {
+  font-size: 12.5px;
+  color: var(--cinza);
+  border: 1px solid var(--linha);
+  padding: 6px 14px;
+  border-radius: 999px;
+}

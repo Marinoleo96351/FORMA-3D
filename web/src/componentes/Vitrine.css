@@ -1,0 +1,53 @@
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  scrollbar-width: none;
+}
+
+.filtros::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 9px 17px;
+  border-radius: 999px;
+  border: 1px solid var(--linha);
+  background: transparent;
+  color: var(--cinza);
+  cursor: pointer;
+  transition: .15s;
+}
+
+.chip:hover {
+  border-color: var(--linha-forte);
+  color: var(--branco);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--azul-fraco);
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+.grade {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+}
+
+.vazio {
+  grid-column: 1 / -1;
+  padding: 48px;
+  text-align: center;
+  color: var(--cinza);
+  border: 1px dashed var(--linha);
+  border-radius: var(--raio);
+}
