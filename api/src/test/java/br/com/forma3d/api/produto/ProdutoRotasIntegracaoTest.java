@@ -14,16 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Percorre todas as rotas de produto do dia 2 contra o Postgres local.
  * Cada teste roda em transacao e faz rollback ao final.
+ * As rotas /api/admin agora exigem token; aqui o usuario autenticado e simulado.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
+@WithMockUser
 class ProdutoRotasIntegracaoTest {
 
     @Autowired
