@@ -1,18 +1,50 @@
 ### forma 3d — API de produtos
-### Testes manuais das rotas do dia 2. Sem autenticacao ainda (entra no dia 3).
+### Testes manuais das rotas. Rotas /api/admin exigem token a partir do dia 3.
 ### Use o REST Client do VS Code ou o IntelliJ HTTP Client.
 
 @base = http://localhost:8080
 
-### Vitrine publica — so produtos ativos, ordenados por ordem e depois data
+### Login — devolve o token. Ajuste email/senha para os do seu ambiente
+### (padrao local: ADMIN_EMAIL / ADMIN_SENHA do application.properties).
+# @name login
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@forma3d.com.br",
+  "senha": "forma3d-troque-em-producao"
+}
+
+### Guarda o token do login para as chamadas protegidas
+@token = {{login.response.body.token}}
+
+### Vitrine publica — so produtos ativos, ordenados por ordem e depois data (sem token)
 GET {{base}}/api/produtos
 
-### Painel — todos os produtos, inclusive inativos
+### Painel — todos os produtos, inclusive inativos (com token)
 GET {{base}}/api/admin/produtos
+Authorization: Bearer {{token}}
+
+### Sem token -> 401 com { "mensagem": "Faca login para acessar essa area." }
+GET {{base}}/api/admin/produtos
+
+### Upload de imagem -> devolve { "url": "https://res.cloudinary.com/..." }
+### Precisa de CLOUDINARY_URL configurada; sem ela responde 503.
+POST {{base}}/api/admin/upload
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----forma3d
+
+------forma3d
+Content-Disposition: form-data; name="arquivo"; filename="peca.jpg"
+Content-Type: image/jpeg
+
+< ./peca.jpg
+------forma3d--
 
 ### Criar produto
 # @name criar
 POST {{base}}/api/admin/produtos
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -30,9 +62,11 @@ Content-Type: application/json
 
 ### Buscar um produto pelo id
 GET {{base}}/api/admin/produtos/{{id}}
+Authorization: Bearer {{token}}
 
 ### Atualizar produto
 PUT {{base}}/api/admin/produtos/{{id}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -46,6 +80,7 @@ Content-Type: application/json
 
 ### Alterar so a ordem
 PATCH {{base}}/api/admin/produtos/{{id}}/ordem
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -54,6 +89,7 @@ Content-Type: application/json
 
 ### Desativar (nao aparece mais na vitrine publica)
 PUT {{base}}/api/admin/produtos/{{id}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -66,9 +102,11 @@ Content-Type: application/json
 
 ### Remover produto
 DELETE {{base}}/api/admin/produtos/{{id}}
+Authorization: Bearer {{token}}
 
 ### Erro esperado: nome vazio -> 400 com { "mensagem": "..." }
 POST {{base}}/api/admin/produtos
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -79,6 +117,7 @@ Content-Type: application/json
 
 ### Erro esperado: preco zero -> 400
 POST {{base}}/api/admin/produtos
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -89,3 +128,4 @@ Content-Type: application/json
 
 ### Erro esperado: id inexistente -> 404
 GET {{base}}/api/admin/produtos/00000000-0000-0000-0000-000000000000
+Authorization: Bearer {{token}}

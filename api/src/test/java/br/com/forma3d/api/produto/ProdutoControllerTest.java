@@ -15,12 +15,15 @@ import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+// Fatia so de controlador: a protecao por token e coberta em AutenticacaoIntegracaoTest.
 @WebMvcTest({ProdutoController.class, AdminProdutoController.class})
+@AutoConfigureMockMvc(addFilters = false)
 class ProdutoControllerTest {
 
     @Autowired
