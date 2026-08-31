@@ -1,0 +1,92 @@
+.login-tela {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.login-caixa {
+  width: 100%;
+  max-width: 360px;
+  background: var(--carvao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-logo {
+  align-self: flex-start;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 21px;
+  letter-spacing: -.01em;
+  border-bottom: 2px solid var(--branco);
+  padding-bottom: 1px;
+  line-height: 1.1;
+}
+
+.login-logo span {
+  letter-spacing: .02em;
+}
+
+.login-caixa h1 {
+  font-size: 26px;
+  margin-top: 6px;
+}
+
+.login-ajuda {
+  color: var(--cinza);
+  font-size: 14px;
+  margin-top: -10px;
+}
+
+.login-caixa .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.login-caixa label {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  font-weight: 500;
+}
+
+.login-caixa input {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--branco);
+  background: var(--elevado);
+  border: 1px solid var(--linha);
+  border-radius: 9px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.login-caixa input:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px var(--azul-fraco);
+}
+
+.login-erro {
+  font-size: 13.5px;
+  color: #FF6B6B;
+  margin-top: -4px;
+}
+
+.login-caixa .btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.login-caixa .btn:disabled {
+  opacity: .6;
+  cursor: progress;
+}

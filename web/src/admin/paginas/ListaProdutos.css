@@ -1,0 +1,166 @@
+.lista-erro {
+  color: #FF6B6B;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+}
+
+.lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  grid-template-areas:
+    "mini dados dados"
+    "mini ordem chave"
+    "acoes acoes acoes";
+  gap: 10px 14px;
+  align-items: center;
+  background: var(--carvao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 14px;
+}
+
+.linha.inativa {
+  opacity: .5;
+}
+
+.mini {
+  grid-area: mini;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--elevado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-vazia {
+  font-size: 10px;
+  color: var(--cinza);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.dados {
+  grid-area: dados;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nome {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--cinza);
+}
+
+.ordem {
+  grid-area: ordem;
+  display: flex;
+  gap: 6px;
+}
+
+.ordem button {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--elevado);
+  border: 1px solid var(--linha);
+  color: var(--branco);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.ordem button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.chave {
+  grid-area: chave;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--cinza);
+  cursor: pointer;
+  justify-self: end;
+}
+
+.chave input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--azul);
+}
+
+.acoes {
+  grid-area: acoes;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid var(--linha);
+  padding-top: 12px;
+}
+
+.botao-linha {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  background: var(--elevado);
+  border: 1px solid var(--linha);
+  color: var(--branco);
+  cursor: pointer;
+}
+
+.botao-linha:hover {
+  border-color: var(--linha-forte);
+}
+
+.botao-linha.perigo {
+  color: #FF6B6B;
+  border-color: rgba(255, 107, 107, .3);
+}
+
+.confirma {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--cinza);
+}
+
+@media (min-width: 720px) {
+  .linha {
+    grid-template-columns: 56px minmax(0, 1fr) auto auto auto;
+    grid-template-areas: "mini dados ordem chave acoes";
+    gap: 16px;
+  }
+
+  .acoes {
+    border-top: none;
+    padding-top: 0;
+  }
+}

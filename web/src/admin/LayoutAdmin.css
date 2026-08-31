@@ -1,0 +1,99 @@
+.admin {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.admin-topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(5, 6, 9, .82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linha);
+}
+
+.admin-barra {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 19px;
+  letter-spacing: -.01em;
+  border-bottom: 2px solid var(--branco);
+  padding-bottom: 1px;
+  line-height: 1.1;
+}
+
+.admin-logo span {
+  letter-spacing: .02em;
+}
+
+.admin-topo-dir {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-link {
+  font-size: 13px;
+  color: var(--cinza);
+}
+
+.admin-link:hover {
+  color: var(--branco);
+}
+
+.admin-sair {
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--linha-forte);
+  color: var(--branco);
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+
+.admin-sair:hover {
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+.admin-conteudo {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+}
+
+.admin-cabeca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.admin-cabeca h1 {
+  font-size: clamp(24px, 5vw, 32px);
+}
+
+.admin-aviso {
+  color: var(--cinza);
+  padding: 24px 0;
+}
+
+.admin-aviso-erro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  color: #FF6B6B;
+}

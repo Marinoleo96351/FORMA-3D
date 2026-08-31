@@ -1,0 +1,133 @@
+.form-produto {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-erro-geral {
+  color: #FF6B6B;
+  font-size: 13.5px;
+  background: rgba(255, 107, 107, .08);
+  border: 1px solid rgba(255, 107, 107, .3);
+  border-radius: 9px;
+  padding: 10px 12px;
+}
+
+.foto-bloco {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.foto-previa {
+  width: 108px;
+  height: 108px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--elevado);
+  border: 1px solid var(--linha);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foto-previa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-previa span {
+  font-size: 11px;
+  color: var(--cinza);
+}
+
+.foto-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.foto-dica {
+  width: 100%;
+  font-size: 12px;
+  color: var(--cinza);
+  margin-top: 2px;
+}
+
+.form-produto .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-produto label {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  font-weight: 500;
+}
+
+.form-produto input[type="text"],
+.form-produto input[type="url"],
+.form-produto input:not([type]),
+.form-produto input[inputmode="decimal"] {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--branco);
+  background: var(--elevado);
+  border: 1px solid var(--linha);
+  border-radius: 9px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.form-produto input::placeholder {
+  color: #5C6373;
+}
+
+.form-produto input:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px var(--azul-fraco);
+}
+
+.form-produto .campo.ruim input {
+  border-color: #FF6B6B;
+}
+
+.campo-erro {
+  font-size: 13px;
+  color: #FF6B6B;
+}
+
+.campo-ativo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--branco);
+  cursor: pointer;
+}
+
+.campo-ativo input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--azul);
+}
+
+.form-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.form-rodape .btn:disabled {
+  opacity: .6;
+  cursor: progress;
+}
