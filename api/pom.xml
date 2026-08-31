@@ -58,16 +58,26 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.cloudinary</groupId>
-			<artifactId>cloudinary-http5</artifactId>
-			<version>2.4.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Cloudflare R2 fala o protocolo S3; usamos o SDK da AWS apontado para o
+		     endpoint da Cloudflare. Versao estavel mais recente conferida no Maven Central. -->
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>s3</artifactId>
+			<version>2.54.7</version>
+		</dependency>
+		<!-- O artefato s3 traz os clientes HTTP so em escopo de teste; sem um cliente
+		     sincrono em runtime o putObject falha. url-connection-client e o mais leve. -->
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>url-connection-client</artifactId>
+			<version>2.54.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

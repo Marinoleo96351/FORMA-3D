@@ -28,8 +28,9 @@ Authorization: Bearer {{token}}
 ### Sem token -> 401 com { "mensagem": "Faca login para acessar essa area." }
 GET {{base}}/api/admin/produtos
 
-### Upload de imagem -> devolve { "url": "https://res.cloudinary.com/..." }
-### Precisa de CLOUDINARY_URL configurada; sem ela responde 503.
+### Upload de imagem -> devolve { "url": "https://<r2-public-url>/<uuid>.jpg" }
+### Precisa do api/.env preenchido com as credenciais do R2; sem R2_PUBLIC_URL responde 503.
+### Ajuste o filename para uma imagem que exista ao lado deste arquivo.
 POST {{base}}/api/admin/upload
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=----forma3d
@@ -129,3 +130,10 @@ Content-Type: application/json
 ### Erro esperado: id inexistente -> 404
 GET {{base}}/api/admin/produtos/00000000-0000-0000-0000-000000000000
 Authorization: Bearer {{token}}
+
+### Erro esperado: upload sem arquivo -> 400 com { "mensagem": "Envie a imagem no campo \"arquivo\"." }
+POST {{base}}/api/admin/upload
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----forma3d
+
+------forma3d--

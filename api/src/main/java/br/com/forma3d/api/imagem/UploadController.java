@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Recebe a foto do produto e devolve a URL publica. Rota protegida por token.
- * Ver secao 5 da especificacao.
+ * POST /api/admin/upload — recebe a foto do produto via multipart/form-data (campo "arquivo")
+ * e devolve { "url": "..." } com o endereco publico para o painel gravar em fotoUrl.
+ * Rota protegida por token, junto com o resto de /api/admin. Ver secao 5 da especificacao.
  */
 @RestController
 @RequestMapping("/api/admin/upload")
