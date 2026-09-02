@@ -22,10 +22,10 @@ export default function CartaoProduto({ produto }) {
         <span className="preco">{formatarPreco(produto.preco)}</span>
         {produto.observacao && <span className="obs">{produto.observacao}</span>}
         <div className="card-acoes">
-          <a className="mini mini-shopee" href={linkShopee} target="_blank" rel="noopener noreferrer">
+          <a className="acao acao-shopee" href={linkShopee} target="_blank" rel="noopener noreferrer">
             Comprar na Shopee
           </a>
-          <a className="mini mini-zap" href={linkZap(mensagem)} target="_blank" rel="noopener noreferrer">
+          <a className="acao acao-zap" href={linkZap(mensagem)} target="_blank" rel="noopener noreferrer">
             Pedir no WhatsApp
           </a>
         </div>

@@ -78,7 +78,7 @@
   padding-top: 8px;
 }
 
-.mini {
+.acao {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,16 +90,16 @@
   transition: filter .15s;
 }
 
-.mini:hover {
+.acao:hover {
   filter: brightness(1.12);
 }
 
-.mini-shopee {
+.acao-shopee {
   background: var(--shopee);
   color: #fff;
 }
 
-.mini-zap {
+.acao-zap {
   background: var(--zap);
   color: #04240F;
 }
