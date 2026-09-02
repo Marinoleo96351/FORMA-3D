@@ -5,6 +5,8 @@ import LayoutAdmin from "../LayoutAdmin";
 import { comprimirImagem } from "../utilitarios/comprimirImagem";
 import "./FormularioProduto.css";
 
+const CATEGORIAS_PADRAO = ["Decoração", "Presentes", "Utilidades", "Miniaturas"];
+
 const CAMPOS_VAZIOS = {
   nome: "",
   categoria: "",
@@ -33,9 +35,11 @@ export default function FormularioProduto() {
   const [problemas, setProblemas] = useState({});
   const [fotoArquivo, setFotoArquivo] = useState(null);
   const [preparandoFoto, setPreparandoFoto] = useState(false);
+  const [categoriaOutros, setCategoriaOutros] = useState(false);
 
   const refNome = useRef(null);
   const refCategoria = useRef(null);
+  const refCategoriaOutros = useRef(null);
   const refPreco = useRef(null);
   const refFoto = useRef(null);
 
@@ -46,6 +50,9 @@ export default function FormularioProduto() {
       try {
         const p = await requisitar(`/api/admin/produtos/${id}`);
         if (!ativo) return;
+        setCategoriaOutros(
+          Boolean(p.categoria) && !CATEGORIAS_PADRAO.includes(p.categoria)
+        );
         setCampos({
           nome: p.nome,
           categoria: p.categoria,
@@ -82,6 +89,16 @@ export default function FormularioProduto() {
     if (problemas[nome]) setProblemas((atual) => ({ ...atual, [nome]: undefined }));
   }
 
+  function escolherCategoria(valor) {
+    if (valor === "__outros__") {
+      setCategoriaOutros(true);
+      editar("categoria", "");
+    } else {
+      setCategoriaOutros(false);
+      editar("categoria", valor);
+    }
+  }
+
   async function escolherFoto(evento) {
     const arquivo = evento.target.files?.[0];
     evento.target.value = ""; // deixa reescolher o mesmo arquivo depois
@@ -108,7 +125,11 @@ export default function FormularioProduto() {
     if (!nome) achado.nome = "Informe o nome da peca.";
     else if (nome.length > 80) achado.nome = "O nome deve ter no maximo 80 caracteres.";
 
-    if (!campos.categoria.trim()) achado.categoria = "Informe a categoria.";
+    if (!campos.categoria.trim()) {
+      achado.categoria = categoriaOutros
+        ? "Digite o nome da categoria."
+        : "Escolha a categoria.";
+    }
 
     const preco = paraNumero(campos.preco);
     if (!campos.preco.trim() || Number.isNaN(preco) || preco <= 0) {
@@ -120,7 +141,11 @@ export default function FormularioProduto() {
     }
 
     setProblemas(achado);
-    const foco = { nome: refNome, categoria: refCategoria, preco: refPreco };
+    const foco = {
+      nome: refNome,
+      categoria: categoriaOutros ? refCategoriaOutros : refCategoria,
+      preco: refPreco,
+    };
     const primeiro = ["nome", "categoria", "preco"].find((chave) => achado[chave]);
     if (primeiro) foco[primeiro].current?.focus();
     return Object.keys(achado).length === 0;
@@ -223,12 +248,28 @@ export default function FormularioProduto() {
 
         <div className={`campo${problemas.categoria ? " ruim" : ""}`}>
           <label htmlFor="categoria">Categoria</label>
-          <input
+          <select
             id="categoria"
             ref={refCategoria}
-            value={campos.categoria}
-            onChange={(e) => editar("categoria", e.target.value)}
-          />
+            value={categoriaOutros ? "__outros__" : campos.categoria}
+            onChange={(e) => escolherCategoria(e.target.value)}
+          >
+            <option value="">Selecione...</option>
+            {CATEGORIAS_PADRAO.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+            <option value="__outros__">Outros</option>
+          </select>
+          {categoriaOutros && (
+            <input
+              id="categoria-outros"
+              ref={refCategoriaOutros}
+              maxLength={40}
+              placeholder="Nome da nova categoria"
+              value={campos.categoria}
+              onChange={(e) => editar("categoria", e.target.value)}
+            />
+          )}
           {problemas.categoria && <span className="campo-erro">{problemas.categoria}</span>}
         </div>
 

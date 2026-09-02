@@ -75,7 +75,8 @@
 .form-produto input[type="text"],
 .form-produto input[type="url"],
 .form-produto input:not([type]),
-.form-produto input[inputmode="decimal"] {
+.form-produto input[inputmode="decimal"],
+.form-produto select {
   font-family: inherit;
   font-size: 15px;
   color: var(--branco);
@@ -84,6 +85,16 @@
   border-radius: 9px;
   padding: 12px 14px;
   width: 100%;
+}
+
+.form-produto select:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px var(--azul-fraco);
+}
+
+.form-produto .campo.ruim select {
+  border-color: #FF6B6B;
 }
 
 .form-produto input::placeholder {
