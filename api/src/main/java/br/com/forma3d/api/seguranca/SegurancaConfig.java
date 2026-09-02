@@ -28,7 +28,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * Protege tudo sob /api/admin com token JWT (dia 3).
- * Publicas: POST /api/auth/login e GET /api/produtos.
+ * Publicas: POST /api/auth/login, GET /api/produtos e GET /api/configuracao.
  */
 @Configuration
 public class SegurancaConfig {
@@ -59,6 +59,7 @@ public class SegurancaConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/produtos").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/configuracao").permitAll()
                 .requestMatchers("/api/admin/**").authenticated()
                 .anyRequest().authenticated())
             .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.decoder(jwtDecoder())))

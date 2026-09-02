@@ -4,6 +4,7 @@ import RotaProtegida from "./admin/RotaProtegida";
 import Login from "./admin/paginas/Login";
 import ListaProdutos from "./admin/paginas/ListaProdutos";
 import FormularioProduto from "./admin/paginas/FormularioProduto";
+import AparenciaSite from "./admin/paginas/AparenciaSite";
 
 export default function App() {
   return (
@@ -15,6 +16,14 @@ export default function App() {
         element={
           <RotaProtegida>
             <ListaProdutos />
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/admin/aparencia"
+        element={
+          <RotaProtegida>
+            <AparenciaSite />
           </RotaProtegida>
         }
       />

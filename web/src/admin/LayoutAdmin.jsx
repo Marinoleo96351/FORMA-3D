@@ -12,6 +12,7 @@ export default function LayoutAdmin({ titulo, acao, children }) {
         <div className="admin-barra">
           <Link to="/admin" className="admin-logo">forma <span>3d</span></Link>
           <div className="admin-topo-dir">
+            <Link to="/admin/aparencia" className="admin-link">Aparência do site</Link>
             <a href="/" className="admin-link" target="_blank" rel="noopener noreferrer">Ver o site</a>
             <button type="button" className="admin-sair" onClick={sair}>Sair</button>
           </div>

@@ -14,6 +14,7 @@ export default function Publica() {
   const [produtos, setProdutos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
+  const [fotoTopoUrl, setFotoTopoUrl] = useState(null);
 
   useEffect(() => {
     let ativo = true;
@@ -34,11 +35,27 @@ export default function Publica() {
     };
   }, []);
 
+  // O topo e decorativo: se a configuracao demorar ou falhar, o espaco
+  // reservado do Topo continua no lugar sem piscar o layout.
+  useEffect(() => {
+    let ativo = true;
+    pedir("/api/configuracao")
+      .then((config) => {
+        if (ativo && config && config.fotoTopoUrl) setFotoTopoUrl(config.fotoTopoUrl);
+      })
+      .catch(() => {
+        // sem configuracao: mantem o placeholder do Topo
+      });
+    return () => {
+      ativo = false;
+    };
+  }, []);
+
   return (
     <>
       <Cabecalho />
       <main>
-        <Topo />
+        <Topo fotoTopoUrl={fotoTopoUrl} />
         <div className="divisor" />
         <Vitrine produtos={produtos} carregando={carregando} erro={erro} />
         <div className="divisor" />

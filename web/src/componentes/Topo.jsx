@@ -1,6 +1,6 @@
 import "./Topo.css";
 
-export default function Topo() {
+export default function Topo({ fotoTopoUrl }) {
   return (
     <section className="topo">
       <div className="piso" aria-hidden="true" />
@@ -27,9 +27,15 @@ export default function Topo() {
             </div>
           </div>
           <div className="moldura">
-            Foto grande da melhor peça
-            <br />
-            (1200 × 990, fundo escuro ou neutro)
+            {fotoTopoUrl ? (
+              <img src={fotoTopoUrl} alt="Peça em destaque da forma 3d" />
+            ) : (
+              <>
+                Foto grande da melhor peça
+                <br />
+                (1200 × 990, fundo escuro ou neutro)
+              </>
+            )}
           </div>
         </div>
       </div>

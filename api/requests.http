@@ -21,6 +21,18 @@ Content-Type: application/json
 ### Vitrine publica — so produtos ativos, ordenados por ordem e depois data (sem token)
 GET {{base}}/api/produtos
 
+### Configuracao publica do site — a pagina inicial le a foto do topo daqui (sem token)
+GET {{base}}/api/configuracao
+
+### Painel — troca a foto do topo (com token). fotoTopoUrl vazio limpa a foto.
+PUT {{base}}/api/admin/configuracao
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "fotoTopoUrl": "https://pub-exemplo.r2.dev/topo.jpg"
+}
+
 ### Painel — todos os produtos, inclusive inativos (com token)
 GET {{base}}/api/admin/produtos
 Authorization: Bearer {{token}}
